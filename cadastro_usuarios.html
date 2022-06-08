@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+  <title>santri</title>
+
+  <link rel="stylesheet" href="static/css/w3.css">
+  <link rel="stylesheet" href="static/css/santri.css">
+  <link rel="stylesheet" href="static/css/toastr.css">
+
+  <link rel="stylesheet" href="static/css-awesome/brands.css">
+  <link rel="stylesheet" href="static/css-awesome/fontawesome.css">
+  <link rel="stylesheet" href="static/css-awesome/regular.css">
+  <link rel="stylesheet" href="static/css-awesome/solid.css">
+  <link rel="stylesheet" href="static/css-awesome/svg-with-js.css">
+  <link rel="stylesheet" href="static/css-awesome/v4-shims.css">
+
+</head>
+
+<body>
+  <script src="static/js/jquery.js"></script>
+  <script>
+    $(document).ready(function() {
+      var usuarioLogado = sessionStorage.getItem('usuarioLogado');
+      if (!usuarioLogado) {
+        window.location.replace("index.html");
+      }
+      $("#b_gravar").click(function() {
+        var nome = $('#nome').val();
+        var login = $('#login').val();
+        var senha = $('#senha').val();
+        var ativo = $('#ativo').val();
+
+        var chklista = $('input[name="check"]:checked').toArray().map(function(check) { 
+          return $(check).val(); 
+        });
+        $.ajax({
+          url: "http://localhost/santri/TestePHP/api_santri/public/api/auth/register",
+          contentType: "application/json",
+          type: "POST",
+          dataType: "json",
+          data: JSON.stringify({
+            'NOME_COMPLETO': nome,
+            'ATIVO': ativo,
+            'SENHA': senha,
+            'LOGIN': login,
+            'autorizacoes': chklista,
+          }),
+          success: function(data) {
+            console.log(data);
+          }
+        })
+      })
+    });
+  </script>
+  <div>
+    <div id="lista_usuarios" class="w3-margin">
+
+      <h4>Cadastro de usuários</h4>
+
+      <div style="display: none;">
+        <label>Usuário 1</label>
+      </div>
+
+      <div>
+        <label>Nome completo</label>
+        <input type="text" class="w3-input w3-block w3-border" id="nome">
+      </div>
+
+      <div>
+        <label>Login</label>
+        <input type="text" class="w3-input w3-block w3-border" id="login">
+      </div>
+
+      <div>
+        <label>Senha</label>
+        <input type="password" class="w3-input w3-block w3-border" id="senha">
+      </div>
+
+      <div>
+        <label>Ativo</label>
+        <input type="text" class="w3-input w3-block w3-border" id="ativo">
+      </div>
+
+      <ul>
+        <li id="opt_cadastrar_clientes"><input type="checkbox" name="check" checked value="cadastrar_clientes"> <label>Cadastrar clientes</label></li>
+        <li id="opt_excluir_clientes"><input type="checkbox" name="check" value="excluir_clientes"> <label>Excluir clientes</label></li>
+        <li id="opt_editar_clientes"><input type="checkbox" name="check" value="editar_clientes"> <label>Editar clientes</label></li>
+      </ul>
+
+      <button class="w3-button w3-theme w3-margin-top w3-margin-bottom" id="b_gravar">Gravar</button>
+      <button class="w3-button w3-margin-top w3-margin-bottom w3-right">Cancelar</button>
+
+    </div>
+  </div>
+</body>
+
+</html>
