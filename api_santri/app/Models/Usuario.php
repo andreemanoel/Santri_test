@@ -17,4 +17,9 @@ class Usuario extends Authenticatable
     protected $fillable = ['NOME_COMPLETO', 'LOGIN', 'SENHA', 'ATIVO'];
 
     public $timestamps = false;
+
+    public function autorizacoes()
+    {
+        return $this->hasMany(Autorizacao::class, 'USUARIO_ID', 'USUARIO_ID');
+    }
 }

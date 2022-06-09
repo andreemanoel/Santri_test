@@ -20,7 +20,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $user = Usuario::where('LOGIN', $request->LOGIN)->first();
+        $user = Usuario::where('LOGIN', $request->LOGIN)->with('autorizacoes')->first();
 
         if (!$user || ($user->SENHA !== $request->SENHA)){
             return response()->json([
@@ -28,26 +28,12 @@ class AuthController extends Controller
             ], 401);
         }
 
-        Session::put('authenticated', '1');
+        // Session::put('authenticated', $user);
+        $token = bin2hex(random_bytes(64));
 
         return response()->json([
-            'authenticated' => true
+            'token' => $token,
+            'user' => $user
         ]);
-    }
-
-    public function register(Request $request)
-    {
-        $user = $this->user->create($request->all());
-
-        if($pais)
-        {
-            if(!empty($request->all()['autorizacoes'])){
-                
-            }
-        }
-
-        return response()->json([
-            'message' => 'Successfully created user!'
-        ], 201);
     }
 }

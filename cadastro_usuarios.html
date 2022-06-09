@@ -22,40 +22,8 @@
 
 <body>
   <script src="static/js/jquery.js"></script>
-  <script>
-    $(document).ready(function() {
-      var usuarioLogado = sessionStorage.getItem('usuarioLogado');
-      if (!usuarioLogado) {
-        window.location.replace("index.html");
-      }
-      $("#b_gravar").click(function() {
-        var nome = $('#nome').val();
-        var login = $('#login').val();
-        var senha = $('#senha').val();
-        var ativo = $('#ativo').val();
+  <script src="./scripts/cadastro.js"></script>
 
-        var chklista = $('input[name="check"]:checked').toArray().map(function(check) { 
-          return $(check).val(); 
-        });
-        $.ajax({
-          url: "http://localhost/santri/TestePHP/api_santri/public/api/auth/register",
-          contentType: "application/json",
-          type: "POST",
-          dataType: "json",
-          data: JSON.stringify({
-            'NOME_COMPLETO': nome,
-            'ATIVO': ativo,
-            'SENHA': senha,
-            'LOGIN': login,
-            'autorizacoes': chklista,
-          }),
-          success: function(data) {
-            console.log(data);
-          }
-        })
-      })
-    });
-  </script>
   <div>
     <div id="lista_usuarios" class="w3-margin">
 

@@ -41,29 +41,7 @@
   </head>
   <body>
     <script src="static/js/jquery.js"></script>
-    <script>
-      $(document).ready(function() {
-        $("#button").click(function() {
-          var usuario = $('#usuario').val();
-          var password = $('#password').val();
-
-          $.ajax({
-            url: "http://localhost/santri/TestePHP/api_santri/public/api/auth/login",
-            contentType: "application/json",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify({
-              'LOGIN': usuario,
-              'SENHA': password,
-            }),
-            success: function(data) {
-              sessionStorage.setItem('usuarioLogado', '1');
-              window.location.replace("cadastro_usuarios.html");
-            }
-          })
-        })
-      });
-    </script>
+    <script type="text/javascript" src="./scripts/login.js"></script>
 
     <div id="login">
       <img id="logo-cliente" class="w3-margin-top" src="static/imagens/logo_cliente.jpg"/>
