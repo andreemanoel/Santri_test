@@ -6,7 +6,13 @@ $(document).ready(function() {
   if (!usuarioLogado) {
     window.location.replace("index.html");
   }
-  
+
+  user_autorizacao.map(aut => {
+    if(aut == 'cadastrar_clientes'){
+      $('#add_user').prop('disabled', false);
+    }
+  })
+
   $.ajax({
     url: "http://localhost/Santri_test/api_santri/public/api/auth/usuarios",
     contentType: "application/json",
@@ -48,6 +54,11 @@ $(document).ready(function() {
     buscarUser(filter)
   });
 
+  $('#logout').click(function () {
+    sessionStorage.clear();
+    window.location.replace("index.html");
+  });
+
   function buscarUser(filter) {
     $.ajax({
       url: "http://localhost/Santri_test/api_santri/public/api/auth/busca",
@@ -78,7 +89,6 @@ $(document).ready(function() {
             if(aut == 'editar_clientes') {
               return "<button class='w3-button w3-theme w3-margin-top' id='btn_editar' data-id="+data[index].usuario_id+"><i class='fas fa-edit'></i></button>"
             }
-            
           }))
           +'</td>'
       +'</tr>'

@@ -54,7 +54,6 @@ $(document).ready(function() {
       return $(check).val(); 
     });
 
-    console.log('veio', id[1])
     $.ajax({
       url: "http://localhost/Santri_test/api_santri/public/api/auth/register",
       contentType: "application/json",
@@ -70,6 +69,7 @@ $(document).ready(function() {
       }),
       success: function(data) {
         alert(data.message);
+        sessionStorage.setItem('autorizacao', chklista);
         window.location.replace("pesquisa_usuarios.html");
       },
       statusCode: {

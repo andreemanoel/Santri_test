@@ -37,10 +37,18 @@
     <script src="static/js/jquery.js"></script>
     <script src="./scripts/pesquisa.js"></script>
     <div>
+      
       <div id="lista_usuarios" class="w3-margin">
-        <input class="w3-input w3-border w3-margin-top" id="filter" type="text" placeholder="Nome">
-        <button class="w3-button w3-theme w3-margin-top" id="buscar_user">Buscar</button>
-        <button class="w3-button w3-theme w3-margin-top w3-right" id="add_user">Cadastrar novo usuário</button>
+        <div class="w3-row">
+          <div class="w3-third">
+            <input class="w3-input w3-border w3-margin-top" id="filter" type="text" placeholder="Nome">
+          </div>
+          <div class="w3-third w3-margin-left">
+            <button class="w3-button w3-theme w3-margin-top" id="buscar_user">Buscar</button>
+          </div>
+        </div>
+        <button class="w3-button w3-theme w3-margin-top" id="add_user" disabled>Cadastrar novo usuário</button>
+        <button class="w3-button w3-theme w3-margin-top w3-right" id="logout">Sair</button>
 
         <table>
           <thead>

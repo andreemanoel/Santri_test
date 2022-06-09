@@ -49,9 +49,9 @@ class UsuarioService {
     foreach($request->autorizacoes as $val){
       $this->autorizacao->create(['CHAVE_AUTORIZACAO'=> $val, 'USUARIO_ID' => $id]);
     }
-
+    
     return response()->json([
-        'message' => 'Usuario atualizado com sucesso!'
+        'message' => 'Usuario atualizado com sucesso!',
     ], 201);
   }
 
