@@ -25,6 +25,11 @@ $(document).ready(function() {
         })
         sessionStorage.setItem('autorizacao', autorizacoes);
         window.location.replace("pesquisa_usuarios.html");
+      },
+      statusCode: {
+        401: function(data) {
+          alert(data.responseJSON.message);
+        }
       }
     })
   })

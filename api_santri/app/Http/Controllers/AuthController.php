@@ -24,7 +24,7 @@ class AuthController extends Controller
 
         if (!$user || ($user->SENHA !== $request->SENHA)){
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'usuário ou senha incorretos.'
             ], 401);
         }
 

@@ -21,5 +21,6 @@ Route::group([
     Route::post('register', '\App\Http\Controllers\UsuarioController@register');
     Route::get('usuarios', '\App\Http\Controllers\UsuarioController@getAll');
     Route::post('delete', '\App\Http\Controllers\UsuarioController@delete');
+    Route::post('user', '\App\Http\Controllers\UsuarioController@user');
     Route::post('busca', '\App\Http\Controllers\UsuarioController@busca');
 });

@@ -16,6 +16,9 @@ class UsuarioController extends Controller
     
     public function register(Request $request)
     {
+        if($request->USUARIO_ID){
+            return $this->user_service->update($request, $request->USUARIO_ID);
+        }
         return $this->user_service->register($request);
     }
 
@@ -27,6 +30,11 @@ class UsuarioController extends Controller
     public function delete(Request $request)
     {
         return $this->user_service->delete($request->id);
+    }
+
+    public function user(Request $request)
+    {
+        return $this->user_service->user($request->id);
     }
 
     public function busca(Request $request)
